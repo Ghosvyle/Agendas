@@ -1,0 +1,60 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body text-center">
+                    <div>
+                        <h3>CONTACTOS</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="titulo">{{accion | uppercase}} CONTACTO</h5>
+                    <form [formGroup]="form" (ngSubmit)="agregarNumero()">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="fas fa-user"
+                                [class.green-icon]="this.form.get('nombre')?.valid"
+                                [class.red-icon]="this.form.get('nombre')?.invalid && this.form.get('nombre')?.touched"></i>
+                            </span>
+                            <input formControlName="nombre" type="text" class="form-control" placeholder="Nombre">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="fas fa-phone"
+                                [class.green-icon]="this.form.get('numerocelular')?.valid"
+                                [class.red-icon]="this.form.get('numerocelular')?.invalid && this.form.get('nombre')?.touched"></i>
+                            </span>
+                            <input formControlName="numerocelular" maxlength="9" type="text" class="form-control" placeholder="Número">
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="titulo">LISTA DE CONTACTOS</h5>
+                    <table class="table">
+                        <tbody>
+                            <tr *ngFor="let contacto of listcontactos;">
+                                <td>{{contacto.nombre}}</td>
+                                <td>{{contacto.numero}}</td>
+                                <td><i (click)="editarcontacto(contacto)" class="far fa-edit text-info"></i></td>
+                                <td><i (click)="eliminarContacto(contacto.id)" class="fas fa-user-times text-danger"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
